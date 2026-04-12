@@ -114,7 +114,7 @@ SCAN_PATTERNS = {
     "SSH Key Fingerprint": r"SHA256:[A-Za-z0-9+/=]{43}",
 
     "Password Assignment": r"(?i)(?<![a-z_])(password|passwd|pwd|user_pass|admin_pass|db_pass|root_pass|mysql_pass)\s*[=:]\s*['\"](?!password['\"]|\s*['\"])[^'\"]{4,}['\"]",
-    "Secret/Token Assignment": r"(?i)(secret|token|api_?key|auth_?token|access_?key|client_?secret|app_?secret|private_?key|encryption_?key|signing_?key)\s*[=:]\s*['\"][^'\"]{8,}['\"]",
+    "Secret/Token Assignment": r"(?i)(secret|token|api_?key|auth_?token|access_?key|client_?secret|app_?secret|private_?key|encryption_?key|signing_?key)\s*[=:]\s*['\"](?!no[_\-]?api[_\-]?key|your[_\-]?api[_\-]?key|dummy|replace|test|none)[^'\"]{8,}['\"]",
     "Authorization Header Hardcoded": r"(?i)(authorization|x-api-key|x-auth-token|x-access-token|x-csrf-token)\s*[=:]\s*['\"][^'\"]+['\"]",
     "API Key in Query Parameter": r"(?i)[?&](?:api[_-]?key|access[_-]?token|auth[_-]?token)=[A-Za-z0-9\-_]{10,}",
     "Hardcoded Salt": r"(?i)(salt|pepper)\s*[=:]\s*['\"][A-Za-z0-9\-_=+/]{8,}['\"]",
@@ -2014,9 +2014,21 @@ def generate_html_report(findings, domains, url, total_sources, total_scanned, o
   <div class="report-header">
     <div class="header-top">
       <div class="header-brand">
-        <div class="header-logo">[SEC]</div>
+        <div class="header-logo">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="100%" stop-color="#3b82f6" />
+              </linearGradient>
+            </defs>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="url(#shield-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 6px rgba(16,185,129,0.5));"/>
+            <path d="M12 8v4" stroke="url(#shield-grad)" stroke-width="2" stroke-linecap="round" style="filter: drop-shadow(0 0 4px rgba(59,130,246,0.6));"/>
+            <circle cx="12" cy="16" r="1.5" fill="#3b82f6" style="filter: drop-shadow(0 0 4px rgba(59,130,246,0.8));"/>
+          </svg>
+        </div>
         <div>
-          <div class="header-title">akha-sourcemap</div>
+          <div class="header-title">AKHA-SOURCEMAP</div>
           <div class="header-subtitle">JavaScript Source Map Exposure Scan Report</div>
         </div>
       </div>
