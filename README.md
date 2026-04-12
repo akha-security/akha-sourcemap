@@ -24,16 +24,11 @@
 
  ## Install
  ```bash
-git clone https://github.com/akha-security/akha-sourcemap
+git clone https://github.com/akha-security/akha-sourcemap.git
 cd akha-sourcemap
 pip install requests urllib3
 ```
 
-## Quick Start
-
-```bash
-python3 sourcemap_scanner.py -u https://example.com/app.js
-```
 
 ## Usage
 
@@ -44,7 +39,7 @@ python sourcemap_scanner.py -u https://example.com/app.js
 # URL list mode
 python sourcemap_scanner.py -f urls.txt
 
-# Save text report (HTML report is also generated)
+# Save text report (Even if you use the -o parameter, it will generate an HTML report.)
 python sourcemap_scanner.py -u https://example.com/app.js -o report.txt
 
 # Passive verification mode
@@ -78,11 +73,14 @@ python sourcemap_scanner.py -u https://example.com/app.js --verify-passive
 - Text report if `-o` is provided
 - HTML report generated automatically
 
-## Disclaimer
+## ⚠️ Disclaimer & Ethical Use
 
-Use this tool only on systems you are authorized to test.
+**AKHA-SOURCEMAP is developed for educational and authorized professional security testing purposes only.**
+
+* Do NOT employ this tool against systems, networks, or applications that you do not hold explicit, documented permission to test.
+* Use staging environments whenever possible. The developers assume zero liability and are not responsible for any misuse, damage, or legal consequences caused by the operation of this software. You act entirely at your own risk.
+
 
 <div align="center">
-  <strong>Developed by akha-security</strong>
+<b>Developed with ❤️ for the Security Community. Licensed under MIT.</b>
 </div>
-
