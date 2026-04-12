@@ -1,46 +1,74 @@
 <img width="1371" height="490" alt="banner" src="https://github.com/user-attachments/assets/60c6c9fe-2f40-4915-8df8-c70f39eda640" />
 
 
-akha-sourcemap is a JavaScript Source Map downloader and information disclosure scanner.
+<div align="center">
+  <h1>AKHA SourceMap Scanner</h1>
+  <p><strong>Fast source map exposure scanner for JavaScript assets</strong></p>
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#quick-start">Quick Start</a> •
+    <a href="#usage">Usage</a> •
+    <a href="#disclaimer">Disclaimer</a>
+  </p>
+</div>
 
-Author: akha-security  
-GitHub: https://github.com/akha-security
+---
 
 ## Features
 
-- Downloads `.js.map` files from a target URL or URL list
-- Extracts source files and optionally recovers missing sources
-- Scans extracted code with extensive disclosure/security patterns
+- Auto discovers and downloads `.js.map` files from JS URLs
+- Extracts source files and tries to recover missing `sourcesContent`
+- Scans code with a large security pattern set (keys, tokens, endpoints, PII)
+- Optional passive endpoint verification with risk labels
 - Generates terminal output, text report, and HTML report
-- Includes passive endpoint verification mode
 
-## Installation
+## Quick Start
 
 ```bash
 pip install requests urllib3
+python sourcemap_scanner.py -u https://example.com/app.js
 ```
 
 ## Usage
 
-Single target:
-
 ```bash
+# Single target
 python sourcemap_scanner.py -u https://example.com/app.js
-```
 
-URL list mode:
-
-```bash
+# URL list mode
 python sourcemap_scanner.py -f urls.txt
-```
 
-Save text report:
-
-```bash
+# Save text report (HTML report is also generated)
 python sourcemap_scanner.py -u https://example.com/app.js -o report.txt
+
+# Passive verification mode
+python sourcemap_scanner.py -u https://example.com/app.js --verify-passive
 ```
 
-## Notes
+### Main Options
 
-- Use only on assets and systems you are authorized to test.
-- This project is intended for security research and defensive auditing.
+```text
+-u, --url                 Single JS/JS.map URL to scan
+-f, --file                File with target URLs
+-o, --output              Text report file path
+-t, --threads             Concurrent workers (default: 5)
+--sources-dir             Source output directory (default: ./output)
+--verify-passive          Enable passive endpoint verification
+--verify-timeout          Verify timeout in seconds (default: 8)
+--verify-max-targets      Max verification targets (default: 40)
+```
+
+## Output
+
+- Extracted source files in the selected output directory
+- Text report if `-o` is provided
+- HTML report generated automatically
+
+## Disclaimer
+
+Use this tool only on systems you are authorized to test.
+
+<div align="center">
+  <strong>Developed by akha-security</strong>
+</div>
+
