@@ -58,9 +58,11 @@ python sourcemap_scanner.py -u https://example.com/app.js --verify-passive
 --verify-max-targets      Max verification targets (default: 40)
 ```
 
-## Screenshot
+## Scanner Screenshot
 <img width="1504" height="911" alt="scanner" src="https://github.com/user-attachments/assets/60e48f8f-90f3-4abf-bd24-811863cb1bc2" />
 
+## Report Screenshot
+<img width="1515" height="760" alt="report" src="https://github.com/user-attachments/assets/adf0dc1e-570d-4130-964f-1b74422fd017" />
 
 
 
