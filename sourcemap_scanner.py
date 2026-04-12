@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 akha-sourcemap - JS Source Map Downloader and Information Exposure Scanner
 Downloads .js.map files from a single URL or a URL list,
@@ -618,10 +618,22 @@ PATTERN_SEVERITY = {
 }
 
 
+_LOGO = r"""
+     █████╗ ██╗  ██╗██╗  ██╗ █████╗       ███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███╗   ███╗ █████╗ ██████╗ 
+    ██╔══██╗██║ ██╔╝██║  ██║██╔══██╗      ██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝████╗ ████║██╔══██╗██╔══██╗
+    ███████║█████╔╝ ███████║███████║█████╗███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ██╔████╔██║███████║██████╔╝
+    ██╔══██║██╔═██╗ ██╔══██║██╔══██║╚════╝╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ██║╚██╔╝██║██╔══██║██╔═══╝ 
+    ██║  ██║██║  ██╗██║  ██║██║  ██║      ███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗██║ ╚═╝ ██║██║  ██║██║     
+    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     
+""".strip('\n')
+
+
 def banner():
     print(f"""{Colors.GREEN}
     ============================================================
-        {Colors.BOLD}akha-sourcemap{Colors.RESET}{Colors.GREEN} - JS Source Map Exposure Scanner
+{_LOGO}
+
+      {Colors.BOLD}AKHA-SourceMap{Colors.RESET}{Colors.GREEN} - JS Source Map Exposure Scanner
 
         URL -> Download -> Extract Sources -> Scan -> Report
     ============================================================{Colors.RESET}
@@ -2181,7 +2193,7 @@ def save_sources_to_disk(file_contents, url, output_dir):
 
 
 def process_single_url(url, args):
-  """Process a single URL: download -> extract -> scan -> report."""
+    """Process a single URL: download -> extract -> scan -> report."""
     start_ts = time.perf_counter()
     data, resolved_url = download_sourcemap(url)
     if data is None:
@@ -2216,9 +2228,9 @@ def process_single_url(url, args):
     if domains:
         print(f"  {Colors.BOLD}EXTRACTED DOMAINS ({len(domains)} items):{Colors.RESET}")
         for d in domains[:30]:
-          print(f"    - {Colors.CYAN}{d}{Colors.RESET}")
+            print(f"    - {Colors.CYAN}{d}{Colors.RESET}")
         if len(domains) > 30:
-          print(f"    {Colors.DIM}... and {len(domains) - 30} more domains{Colors.RESET}")
+            print(f"    {Colors.DIM}... and {len(domains) - 30} more domains{Colors.RESET}")
         print()
     if args.output:
         generate_report(
@@ -2235,8 +2247,8 @@ def process_single_url(url, args):
 
     elapsed = time.perf_counter() - start_ts
     print(
-      f"  {Colors.BOLD}[*] Summary:{Colors.RESET} "
-      f"sources={total_sources}, scanned={total_scanned}, findings={total_findings}, duration={elapsed:.2f}s"
+        f"  {Colors.BOLD}[*] Summary:{Colors.RESET} "
+        f"sources={total_sources}, scanned={total_scanned}, findings={total_findings}, duration={elapsed:.2f}s"
     )
 
     return True
@@ -2274,18 +2286,18 @@ Examples:
         print(f"  {Colors.BOLD}[*] Target: {args.url}{Colors.RESET}\n")
         ok = process_single_url(args.url, args)
         if not ok:
-          print(f"  {Colors.RED}[!] Operation failed.{Colors.RESET}\n")
+            print(f"  {Colors.RED}[!] Operation failed.{Colors.RESET}\n")
             sys.exit(1)
     elif args.file:
         if not os.path.isfile(args.file):
-          print(f"  {Colors.RED}[!] Error: File not found: '{args.file}'{Colors.RESET}")
+            print(f"  {Colors.RED}[!] Error: File not found: '{args.file}'{Colors.RESET}")
             sys.exit(1)
 
         with open(args.file, 'r', encoding='utf-8', errors='ignore') as f:
             urls = [line.strip() for line in f if line.strip() and not line.strip().startswith('#')]
 
         if not urls:
-          print(f"  {Colors.RED}[!] Error: File is empty or has no valid URLs.{Colors.RESET}")
+            print(f"  {Colors.RED}[!] Error: File is empty or has no valid URLs.{Colors.RESET}")
             sys.exit(1)
 
         print(f"  {Colors.BOLD}[*] Loaded {len(urls)} URLs.{Colors.RESET}\n")
