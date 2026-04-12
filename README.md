@@ -22,11 +22,17 @@
 - Optional passive endpoint verification with risk labels
 - Generates terminal output, text report, and HTML report
 
+ ## Install
+ ```bash
+git clone https://github.com/akha-security/akha-sourcemap
+cd akha-sourcemap
+pip install requests urllib3
+```
+
 ## Quick Start
 
 ```bash
-pip install requests urllib3
-python sourcemap_scanner.py -u https://example.com/app.js
+python3 sourcemap_scanner.py -u https://example.com/app.js
 ```
 
 ## Usage
