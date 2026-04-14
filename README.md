@@ -81,6 +81,4 @@ python sourcemap_scanner.py -u https://example.com/app.js --verify-passive
 * Use staging environments whenever possible. The developers assume zero liability and are not responsible for any misuse, damage, or legal consequences caused by the operation of this software. You act entirely at your own risk.
 
 
-<div align="center">
-<b>Developed with ❤️ for the Security Community. Licensed under MIT.</b>
-</div>
+
